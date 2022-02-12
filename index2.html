@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button example</title>
+</head>
+<body>
+    <form id="clickbtn">
+        <button>Click!</button>
+        <h3>00 Clicked!</h3>
+    </form>
+    <script>
+        const clickBtn = document.querySelector("#clickbtn button");
+        const clickCounter = document.querySelector("#clickbtn h3"); 
+        let counter = 0;
+
+        function handleClickBtn (event) {
+            event.preventDefault();
+            counter = counter +1;
+            clickCounter.innerText = `${counter} Clicked!`;
+        }
+        clickBtn.addEventListener("click", handleClickBtn);
+    </script>
+</body>
+</html>
