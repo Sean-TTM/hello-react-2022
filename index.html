@@ -7,23 +7,42 @@
     <div id="root"></div>
   </body>
 
-  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const root = document.getElementById('root')
-    const APP = () => {
-      const [counter, setCounter] = React.useState(0)
-      const onClick = () => {
-        setCounter(counter + 1)
-      }
+    function Btn({ text, onClick }) {
+      console.log(text, 'was rendered')
+      return (
+        <button
+          onClick={onClick}
+          style={{
+            backgroundColor: 'tomato',
+            color: 'white',
+            padding: '10px 20px',
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {text}
+        </button>
+      )
+    }
+    Btn.propTypes = {
+      text: PropTypes.string,
+    }
+    function APP() {
+      const [value, setValue] = React.useState('Save Chnages')
+      const changeValue = () => setValue('Revert Changes')
       return (
         <div>
-          <h3>Total Clicks: {counter}</h3>
-          <button onClick={onClick}>Click me</button>
+          <Btn text={value} onClick={changeValue} />
+          <Btn text="Continue" />
         </div>
       )
     }
+    const root = document.getElementById('root')
     ReactDOM.render(<APP />, root)
   </script>
 </html>
